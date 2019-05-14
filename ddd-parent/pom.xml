@@ -30,6 +30,7 @@
         <!-- The hibernate version should match the one managed by
         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/${spring-boot.version} -->
         <hibernate.version>5.3.9.Final</hibernate.version>
+        <hibernate.validator.version>6.0.16.Final</hibernate.validator.version>
         <!-- The javassist version should match the one managed by
         https://mvnrepository.com/artifact/org.hibernate/hibernate-core/${hibernate.version} -->
         <javassist.version>3.23.1-GA</javassist.version>
@@ -73,7 +74,7 @@
 
         <!-- other -->
         <hibernate.jpa.version>1.0.0.Final</hibernate.jpa.version>
-        <swagger-version>2.7.0</swagger-version>
+        <swagger-version>2.9.2</swagger-version>
         <swagger.codegen-version>2.2.3</swagger.codegen-version>
         <swagger.annotations-version>1.5.13</swagger.annotations-version>
         <mysql.connector-version>8.0.13</mysql.connector-version>
@@ -81,11 +82,15 @@
         <jodd-version>4.3.0</jodd-version>
         <validator-version>1.6</validator-version>
         <guava-version>18.0</guava-version>
-        <jwt-version>0.9.0</jwt-version>
+        <jwt-version>0.10.6</jwt-version>
+        <problem-spring.version>0.24.0-RC.0</problem-spring.version>
+        <problem-spring-web.version>${problem-spring.version}</problem-spring-web.version>
+        <problem-spring-webflux.version>${problem-spring.version}</problem-spring-webflux.version>
         <org-json-version>20080701</org-json-version>
         <fastjson-version>1.2.45</fastjson-version>
         <redisson-version>3.7.0</redisson-version>
-        <druid-version>1.1.6</druid-version>
+        <spring-boot-druid-version>1.1.10</spring-boot-druid-version>
+        <p6spy-version>3.8.2</p6spy-version>
         <json-lib-version>2.4</json-lib-version>
         <commons.lang3-version>3.7</commons.lang3-version>
         <commons.collections-version>3.2.2</commons.collections-version>
@@ -118,10 +123,26 @@
             </dependency>
             <!-- hibernate-jpa -->
             <dependency>
-                <groupId>org.hibernate.javax.persistence</groupId>
-                <artifactId>hibernate-jpa-2.1-api</artifactId>
-                <version>${hibernate.jpa.version}</version>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-jpamodelgen</artifactId>
+                <version>${hibernate.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-envers</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
+            </dependency>
+
             <!-- liquibase -->
             <dependency>
                 <groupId>org.liquibase</groupId>
@@ -242,6 +263,45 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson-version}</version>
+            </dependency>
+
+            <!-- zalando -->
+            <dependency>
+                <groupId>org.zalando</groupId>
+                <artifactId>problem-spring-web</artifactId>
+                <version>${problem-spring-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zalando</groupId>
+                <artifactId>problem-spring-webflux</artifactId>
+                <version>${problem-spring-webflux.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${spring-boot-druid-version}</version>
+            </dependency>
+            <!-- p6spy -->
+            <dependency>
+                <groupId>p6spy</groupId>
+                <artifactId>p6spy</artifactId>
+                <version>${p6spy-version}</version>
+            </dependency>
+            <!-- jwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jwt-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jwt-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jwt-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
