@@ -2,7 +2,8 @@ package com.holddie.usercenter.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.holddie.usercenter.config.Constants;
-import lombok.Data;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
 
@@ -25,12 +26,20 @@ import java.util.Set;
  * @date 2019-05-14 09:44
  * @Vsersion 1.0
  **/
-@Data
-@Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@Builder
+@NoArgsConstructor
+@Slf4j
 @Table(name = "center_user")
 public class User extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -98,5 +107,29 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public boolean getActivated() {
         return activated;
+    }
+
+    public Set<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public void setActivationKey(String activationKey) {
+        this.activationKey = activationKey;
     }
 }

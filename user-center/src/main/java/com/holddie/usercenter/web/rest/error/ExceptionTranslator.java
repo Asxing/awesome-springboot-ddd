@@ -36,7 +36,7 @@ public class ExceptionTranslator implements ProblemHandling {
     private static final String PATH_KEY = "path";
     private static final String VIOLATIONS_KEY = "violations";
 
-    @Value("${jhipster.clientApp.name}")
+    @Value("${spring.application.name}")
     private String applicationName;
 
     /**
