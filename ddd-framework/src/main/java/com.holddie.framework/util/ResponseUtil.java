@@ -1,11 +1,11 @@
-package com.holddie.usercenter.web.rest.util;
+package com.holddie.framework.util;
 
-import java.util.Optional;
-import java.util.function.Function;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
+
+import java.util.Optional;
 
 public interface ResponseUtil {
     static <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse) {

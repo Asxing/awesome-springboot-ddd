@@ -1,6 +1,6 @@
-package com.holddie.usercenter.security;
+package com.holddie.framework.security;
 
-import com.holddie.usercenter.web.rest.error.BadRequestAlertException;
+import com.holddie.framework.error.BadRequestAlertException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,7 +10,7 @@ import java.util.Optional;
 /**
  * Utility class for Spring Security.
  */
-public final class SecurityUtils {
+public class SecurityUtils {
 
     private SecurityUtils() {
     }
@@ -27,15 +27,15 @@ public final class SecurityUtils {
     public static Optional<String> getCurrentUserLogin() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         return Optional.ofNullable(securityContext.getAuthentication())
-            .map(authentication -> {
-                if (authentication.getPrincipal() instanceof UserDetails) {
-                    UserDetails springSecurityUser = (UserDetails) authentication.getPrincipal();
-                    return springSecurityUser.getUsername();
-                } else if (authentication.getPrincipal() instanceof String) {
-                    return (String) authentication.getPrincipal();
-                }
-                return null;
-            });
+                .map(authentication -> {
+                    if (authentication.getPrincipal() instanceof UserDetails) {
+                        UserDetails springSecurityUser = (UserDetails) authentication.getPrincipal();
+                        return springSecurityUser.getUsername();
+                    } else if (authentication.getPrincipal() instanceof String) {
+                        return (String) authentication.getPrincipal();
+                    }
+                    return null;
+                });
     }
 
     /**
@@ -46,8 +46,8 @@ public final class SecurityUtils {
     public static Optional<String> getCurrentUserJWT() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         return Optional.ofNullable(securityContext.getAuthentication())
-            .filter(authentication -> authentication.getCredentials() instanceof String)
-            .map(authentication -> (String) authentication.getCredentials());
+                .filter(authentication -> authentication.getCredentials() instanceof String)
+                .map(authentication -> (String) authentication.getCredentials());
     }
 
     /**
@@ -58,9 +58,9 @@ public final class SecurityUtils {
     public static boolean isAuthenticated() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         return Optional.ofNullable(securityContext.getAuthentication())
-            .map(authentication -> authentication.getAuthorities().stream()
-                .noneMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(AuthoritiesConstants.ANONYMOUS)))
-            .orElse(false);
+                .map(authentication -> authentication.getAuthorities().stream()
+                        .noneMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(AuthoritiesConstants.ANONYMOUS)))
+                .orElse(false);
     }
 
     /**
@@ -74,17 +74,16 @@ public final class SecurityUtils {
     public static boolean isCurrentUserInRole(String authority) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         return Optional.ofNullable(securityContext.getAuthentication())
-            .map(authentication -> authentication.getAuthorities().stream()
-                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(authority)))
-            .orElse(false);
+                .map(authentication -> authentication.getAuthorities().stream()
+                        .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(authority)))
+                .orElse(false);
     }
-
 
 
     public static Long getUserId() {
         String currentUserId = SecurityUtils.getCurrentUserLogin().get();
         currentUserId = currentUserId == null ? "" : currentUserId;
-        if(currentUserId.matches("\\d+")) {
+        if (currentUserId.matches("\\d+")) {
             return Long.valueOf(currentUserId);
         } else {
             return null;

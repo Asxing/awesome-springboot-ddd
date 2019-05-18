@@ -1,4 +1,4 @@
-package com.holddie.usercenter.web.rest.util;
+package com.holddie.framework.util;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;

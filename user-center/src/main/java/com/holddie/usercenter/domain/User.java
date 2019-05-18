@@ -1,6 +1,7 @@
 package com.holddie.usercenter.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.holddie.framework.bean.BaseEntity;
 import com.holddie.usercenter.config.Constants;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -22,18 +23,15 @@ import java.util.Set;
  * 用户
  *
  * @author HoldDie
- * @ClassName User
  * @date 2019-05-14 09:44
  * @Vsersion 1.0
  **/
-@Setter
-@Getter
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Slf4j
+@Entity
 @Table(name = "center_user")
-public class User extends AbstractAuditingEntity implements Serializable {
+public class User  extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

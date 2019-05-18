@@ -1,5 +1,9 @@
 package com.holddie.usercenter.web.rest.vm;
 
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -8,13 +12,21 @@ import javax.validation.constraints.Size;
  */
 public class LoginVM {
 
-    @NotNull
+    @ApiModelProperty("邮箱")
+    @NotNull(message = "用户名不可以为空")
     @Size(min = 1, max = 50)
     private String username;
 
-    @NotNull
+    @ApiModelProperty("邮箱")
+    @NotNull(message = "密码不可以为空")
     @Size(min = 4, max = 100)
     private String password;
+
+    @ApiModelProperty("邮箱")
+    @NotEmpty(message = "邮箱不能为空")
+    @Email
+    @Size(min = 5, max = 254)
+    private String email;
 
     private Boolean rememberMe;
 

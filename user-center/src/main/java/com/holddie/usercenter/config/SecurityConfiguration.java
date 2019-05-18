@@ -1,6 +1,6 @@
 package com.holddie.usercenter.config;
 
-import com.holddie.usercenter.security.AuthoritiesConstants;
+import com.holddie.framework.security.AuthoritiesConstants;
 import com.holddie.usercenter.security.jwt.JWTConfigurer;
 import com.holddie.usercenter.security.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;

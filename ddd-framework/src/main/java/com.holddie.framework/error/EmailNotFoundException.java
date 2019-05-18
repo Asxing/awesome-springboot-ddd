@@ -1,5 +1,6 @@
-package com.holddie.usercenter.web.rest.error;
+package com.holddie.framework.error;
 
+import com.holddie.framework.error.ErrorConstants;
 import org.zalando.problem.AbstractThrowableProblem;
 import org.zalando.problem.Status;
 

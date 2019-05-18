@@ -1,18 +1,18 @@
 package com.holddie.usercenter.service;
 
 
+import com.holddie.framework.error.EmailAlreadyUsedException;
+import com.holddie.framework.error.InvalidPasswordException;
+import com.holddie.framework.error.LoginAlreadyUsedException;
 import com.holddie.usercenter.config.Constants;
 import com.holddie.usercenter.domain.Authority;
 import com.holddie.usercenter.domain.User;
 import com.holddie.usercenter.repository.AuthorityRepository;
 import com.holddie.usercenter.repository.UserRepository;
-import com.holddie.usercenter.security.AuthoritiesConstants;
-import com.holddie.usercenter.security.SecurityUtils;
+import com.holddie.framework.security.AuthoritiesConstants;
+import com.holddie.framework.security.SecurityUtils;
 import com.holddie.usercenter.service.dto.UserDTO;
 import com.holddie.usercenter.service.util.RandomUtil;
-import com.holddie.usercenter.web.rest.error.EmailAlreadyUsedException;
-import com.holddie.usercenter.web.rest.error.InvalidPasswordException;
-import com.holddie.usercenter.web.rest.error.LoginAlreadyUsedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;

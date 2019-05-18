@@ -1,4 +1,4 @@
-package com.holddie.usercenter.security;
+package com.holddie.framework.security;
 
 /**
  * Constants for Spring Security authorities.

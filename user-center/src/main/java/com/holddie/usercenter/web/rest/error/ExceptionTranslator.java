@@ -1,7 +1,10 @@
 package com.holddie.usercenter.web.rest.error;
 
 
-import com.holddie.usercenter.web.rest.util.HeaderUtil;
+import com.holddie.framework.error.BadRequestAlertException;
+import com.holddie.framework.error.ErrorConstants;
+import com.holddie.framework.error.FieldErrorVM;
+import com.holddie.framework.util.HeaderUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.http.ResponseEntity;

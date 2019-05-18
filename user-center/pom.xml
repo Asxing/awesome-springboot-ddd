@@ -2,11 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>com.holddie</groupId>
-        <artifactId>ddd-parent</artifactId>
+        <artifactId>ddd-dependencies</artifactId>
         <version>0.0.1</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../ddd-dependencies/pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
     <artifactId>user-center</artifactId>
@@ -20,6 +21,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.holddie</groupId>
+            <artifactId>ddd-framework</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -53,11 +60,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -113,30 +115,30 @@
             <artifactId>mapstruct-processor</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-hibernate5</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-hppc</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-afterburner</artifactId>
-            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.holddie</groupId>
+            <artifactId>ddd-framework</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -603,65 +605,65 @@
             </properties>
         </profile>
         <!--<profile>-->
-            <!--<id>webpack</id>-->
-            <!--<activation>-->
-                <!--<file>-->
-                    <!--<missing>${basedir}/target/classes/static/app/main.bundle.js</missing>-->
-                <!--</file>-->
-            <!--</activation>-->
-            <!--<dependencies>-->
-                <!--<dependency>-->
-                    <!--<groupId>org.springframework.boot</groupId>-->
-                    <!--<artifactId>spring-boot-starter-undertow</artifactId>-->
-                <!--</dependency>-->
-                <!--<dependency>-->
-                    <!--<groupId>org.springframework.boot</groupId>-->
-                    <!--<artifactId>spring-boot-devtools</artifactId>-->
-                    <!--<optional>true</optional>-->
-                <!--</dependency>-->
-            <!--</dependencies>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>com.github.eirslett</groupId>-->
-                        <!--<artifactId>frontend-maven-plugin</artifactId>-->
-                        <!--<executions>-->
-                            <!--<execution>-->
-                                <!--<id>install node and npm</id>-->
-                                <!--<goals>-->
-                                    <!--<goal>install-node-and-npm</goal>-->
-                                <!--</goals>-->
-                                <!--<configuration>-->
-                                    <!--<nodeVersion>${node.version}</nodeVersion>-->
-                                    <!--<npmVersion>${npm.version}</npmVersion>-->
-                                <!--</configuration>-->
-                            <!--</execution>-->
-                            <!--<execution>-->
-                                <!--<id>npm install</id>-->
-                                <!--<goals>-->
-                                    <!--<goal>npm</goal>-->
-                                <!--</goals>-->
-                            <!--</execution>-->
-                            <!--<execution>-->
-                                <!--<id>webpack build dev</id>-->
-                                <!--<goals>-->
-                                    <!--<goal>npm</goal>-->
-                                <!--</goals>-->
-                                <!--<phase>generate-resources</phase>-->
-                                <!--<configuration>-->
-                                    <!--<arguments>run webpack:build</arguments>-->
-                                    <!--<npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>-->
-                                <!--</configuration>-->
-                            <!--</execution>-->
-                        <!--</executions>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-            <!--<properties>-->
-                <!--&lt;!&ndash; default Spring profiles &ndash;&gt;-->
-                <!--&lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
-                <!--<spring.profiles.active>dev${profile.no-liquibase}</spring.profiles.active>-->
-            <!--</properties>-->
+        <!--<id>webpack</id>-->
+        <!--<activation>-->
+        <!--<file>-->
+        <!--<missing>${basedir}/target/classes/static/app/main.bundle.js</missing>-->
+        <!--</file>-->
+        <!--</activation>-->
+        <!--<dependencies>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-undertow</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-devtools</artifactId>-->
+        <!--<optional>true</optional>-->
+        <!--</dependency>-->
+        <!--</dependencies>-->
+        <!--<build>-->
+        <!--<plugins>-->
+        <!--<plugin>-->
+        <!--<groupId>com.github.eirslett</groupId>-->
+        <!--<artifactId>frontend-maven-plugin</artifactId>-->
+        <!--<executions>-->
+        <!--<execution>-->
+        <!--<id>install node and npm</id>-->
+        <!--<goals>-->
+        <!--<goal>install-node-and-npm</goal>-->
+        <!--</goals>-->
+        <!--<configuration>-->
+        <!--<nodeVersion>${node.version}</nodeVersion>-->
+        <!--<npmVersion>${npm.version}</npmVersion>-->
+        <!--</configuration>-->
+        <!--</execution>-->
+        <!--<execution>-->
+        <!--<id>npm install</id>-->
+        <!--<goals>-->
+        <!--<goal>npm</goal>-->
+        <!--</goals>-->
+        <!--</execution>-->
+        <!--<execution>-->
+        <!--<id>webpack build dev</id>-->
+        <!--<goals>-->
+        <!--<goal>npm</goal>-->
+        <!--</goals>-->
+        <!--<phase>generate-resources</phase>-->
+        <!--<configuration>-->
+        <!--<arguments>run webpack:build</arguments>-->
+        <!--<npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>-->
+        <!--</configuration>-->
+        <!--</execution>-->
+        <!--</executions>-->
+        <!--</plugin>-->
+        <!--</plugins>-->
+        <!--</build>-->
+        <!--<properties>-->
+        <!--&lt;!&ndash; default Spring profiles &ndash;&gt;-->
+        <!--&lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
+        <!--<spring.profiles.active>dev${profile.no-liquibase}</spring.profiles.active>-->
+        <!--</properties>-->
         <!--</profile>-->
         <profile>
             <id>dev</id>

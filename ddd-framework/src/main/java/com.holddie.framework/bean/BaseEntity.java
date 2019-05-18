@@ -1,4 +1,4 @@
-package com.holddie.usercenter.domain;
+package com.holddie.framework.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

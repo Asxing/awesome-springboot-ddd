@@ -1,4 +1,4 @@
-package com.holddie.usercenter.web.rest.util;
+package com.holddie.framework.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
