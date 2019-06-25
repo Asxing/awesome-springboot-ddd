@@ -18,6 +18,7 @@
 
     <modules>
         <module>../ddd-framework</module>
+        <module>../user-center</module>
     </modules>
 
     <properties>

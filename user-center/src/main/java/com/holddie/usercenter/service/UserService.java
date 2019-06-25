@@ -86,7 +86,7 @@ public class UserService {
     }
 
     public User registerUser(UserDTO userDTO, String password) {
-        userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).ifPresent(existingUser -> {
+        userRepository.findOneByUserName(userDTO.getLogin().toLowerCase()).ifPresent(existingUser -> {
             boolean removed = removeNonActivatedUser(existingUser);
             if (!removed) {
                 throw new LoginAlreadyUsedException();
@@ -100,7 +100,7 @@ public class UserService {
         });
         User newUser = new User();
         String encryptedPassword = passwordEncoder.encode(password);
-        newUser.setLogin(userDTO.getLogin().toLowerCase());
+        newUser.setUserName(userDTO.getLogin().toLowerCase());
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
         newUser.setFirstName(userDTO.getFirstName());
@@ -131,7 +131,7 @@ public class UserService {
 
     public User createUser(UserDTO userDTO) {
         User user = new User();
-        user.setLogin(userDTO.getLogin().toLowerCase());
+        user.setUserName(userDTO.getLogin().toLowerCase());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail().toLowerCase());
@@ -170,7 +170,7 @@ public class UserService {
      */
     public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
         SecurityUtils.getCurrentUserLogin()
-                .flatMap(userRepository::findOneByLogin)
+                .flatMap(userRepository::findOneByUserName)
                 .ifPresent(user -> {
                     user.setFirstName(firstName);
                     user.setLastName(lastName);
@@ -193,7 +193,7 @@ public class UserService {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .map(user -> {
-                    user.setLogin(userDTO.getLogin().toLowerCase());
+                    user.setUserName(userDTO.getLogin().toLowerCase());
                     user.setFirstName(userDTO.getFirstName());
                     user.setLastName(userDTO.getLastName());
                     user.setEmail(userDTO.getEmail().toLowerCase());
@@ -214,7 +214,7 @@ public class UserService {
     }
 
     public void deleteUser(String login) {
-        userRepository.findOneByLogin(login).ifPresent(user -> {
+        userRepository.findOneByUserName(login).ifPresent(user -> {
             userRepository.delete(user);
             log.debug("Deleted User: {}", user);
         });
@@ -222,7 +222,7 @@ public class UserService {
 
     public void changePassword(String currentClearTextPassword, String newPassword) {
         SecurityUtils.getCurrentUserLogin()
-                .flatMap(userRepository::findOneByLogin)
+                .flatMap(userRepository::findOneByUserName)
                 .ifPresent(user -> {
                     String currentEncryptedPassword = user.getPassword();
                     if (!passwordEncoder.matches(currentClearTextPassword, currentEncryptedPassword)) {
@@ -236,12 +236,12 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
-        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
+        return userRepository.findAllByUserNameNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
     }
 
     @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthoritiesByLogin(String login) {
-        return userRepository.findOneWithAuthoritiesByLogin(login);
+        return userRepository.findOneWithAuthoritiesByUserName(login);
     }
 
     @Transactional(readOnly = true)
@@ -251,7 +251,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthorities() {
-        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByLogin);
+        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByUserName);
     }
 
     /**
@@ -264,7 +264,7 @@ public class UserService {
         userRepository
                 .findAllByActivatedIsFalseAndCreatedDateBefore(Instant.now().minus(3, ChronoUnit.DAYS))
                 .forEach(user -> {
-                    log.debug("Deleting not activated user {}", user.getLogin());
+                    log.debug("Deleting not activated user {}", user.getUserName());
                     userRepository.delete(user);
                 });
     }

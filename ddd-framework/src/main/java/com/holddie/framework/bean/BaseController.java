@@ -36,12 +36,11 @@ public abstract class BaseController {
         workbook.close();
     }
 
-    private void validateParams(BindingResult bindingResult) {
+    public void validateParams(BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String errorMessage = bindingResult.getAllErrors().get(0).getDefaultMessage();
             throw new BadRequestAlertException(errorMessage);
         }
     }
-
 
 }

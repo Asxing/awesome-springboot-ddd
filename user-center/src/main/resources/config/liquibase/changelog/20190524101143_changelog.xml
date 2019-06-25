@@ -1,0 +1,114 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="holddie (generated)" id="1558692711906-1">
+        <createTable tableName="center_authority">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="center_authorityPK"/>
+            </column>
+            <column name="created_date" type="TINYBLOB"/>
+            <column name="last_modified_date" type="TINYBLOB"/>
+            <column defaultValueNumeric="0" name="version" type="BIGINT"/>
+            <column name="code" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-2">
+        <createTable tableName="center_authority_permission">
+            <column name="authority_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="permission_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-3">
+        <createTable tableName="center_permission">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="center_permissionPK"/>
+            </column>
+            <column name="created_date" type="TINYBLOB"/>
+            <column name="last_modified_date" type="TINYBLOB"/>
+            <column defaultValueNumeric="0" name="version" type="BIGINT"/>
+            <column name="code" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="menu_relation" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-4">
+        <createTable tableName="center_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="center_userPK"/>
+            </column>
+            <column name="created_date" type="TINYBLOB"/>
+            <column name="last_modified_date" type="TINYBLOB"/>
+            <column defaultValueNumeric="0" name="version" type="BIGINT"/>
+            <column name="activated" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(6)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="nick_name" type="VARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_date" type="TINYBLOB"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+            <column name="user_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-5">
+        <createTable tableName="center_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="authority_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-6">
+        <createTable tableName="center_user_permission">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="permission_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-7">
+        <addUniqueConstraint columnNames="email" constraintName="UC_CENTER_USEREMAIL_COL" tableName="center_user"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-8">
+        <addUniqueConstraint columnNames="user_name" constraintName="UC_CENTER_USERUSER_NAME_COL" tableName="center_user"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-9">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="center_user_authority" constraintName="FK21dtn0d7lt4fut9whjfg277wt" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="center_user" validate="true"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-10">
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="center_user_permission" constraintName="FKdrmfipxqvv4skvdf6hf3le9id" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="center_permission" validate="true"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-11">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="center_user_permission" constraintName="FKgf2u9rfe9jtqhv1wurf1u0kfr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="center_user" validate="true"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-12">
+        <addForeignKeyConstraint baseColumnNames="authority_id" baseTableName="center_authority_permission" constraintName="FKht55ucrngfx2070g312r7t3ku" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="center_authority" validate="true"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-13">
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="center_authority_permission" constraintName="FKm88w9eak6ucwh30085g3m4tf" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="center_permission" validate="true"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1558692711906-14">
+        <addForeignKeyConstraint baseColumnNames="authority_id" baseTableName="center_user_authority" constraintName="FKq09kmhy0e7w511rvknvijw53m" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="center_authority" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

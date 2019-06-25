@@ -1,9 +1,9 @@
 package com.holddie.usercenter.web.rest.vm;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,30 +12,30 @@ import javax.validation.constraints.Size;
  */
 public class LoginVM {
 
-    @ApiModelProperty("邮箱")
-    @NotNull(message = "用户名不可以为空")
+    @ApiModelProperty("用户名")
     @Size(min = 1, max = 50)
-    private String username;
+    private String userName;
 
-    @ApiModelProperty("邮箱")
+    @ApiModelProperty("密码")
     @NotNull(message = "密码不可以为空")
     @Size(min = 4, max = 100)
     private String password;
 
     @ApiModelProperty("邮箱")
-    @NotEmpty(message = "邮箱不能为空")
     @Email
     @Size(min = 5, max = 254)
     private String email;
 
     private Boolean rememberMe;
+    @ApiModelProperty("用户类型")
+    private String type;
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -57,8 +57,11 @@ public class LoginVM {
     @Override
     public String toString() {
         return "LoginVM{" +
-            "username='" + username + '\'' +
-            ", rememberMe=" + rememberMe +
-            '}';
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", rememberMe=" + rememberMe +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
