@@ -1,5 +1,6 @@
 package com.holddie.framework.bean.response;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 
 import java.util.HashMap;
@@ -125,4 +126,7 @@ public class ResultUtil {
                 .build();
     }
 
+    public static ResultPage genOkResultPage(Page page) {
+        return new ResultPage(page);
+    }
 }

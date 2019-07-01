@@ -22,13 +22,13 @@ public class BaseEntity extends AbstractAggregateRoot {
     @Column(columnDefinition = "bigint default 0")
     protected Long version;
 
-    @CreatedDate
-    @Column(name = "created_date", updatable = false)
     @JsonIgnore
+    @CreatedDate
+    @Column(name = "created_date", columnDefinition = "timestamp", updatable = false)
     private Instant createdDate = Instant.now();
 
-    @LastModifiedDate
-    @Column(name = "last_modified_date")
     @JsonIgnore
+    @LastModifiedDate
+    @Column(name = "last_modified_date", columnDefinition = "timestamp")
     private Instant lastModifiedDate = Instant.now();
 }
