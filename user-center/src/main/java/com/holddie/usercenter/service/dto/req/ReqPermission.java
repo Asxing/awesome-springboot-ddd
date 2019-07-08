@@ -24,5 +24,5 @@ public class ReqPermission {
     private String code;
     private String description;
     private Boolean status;
-    private ArrayList<String> moudelValue;
+    private ArrayList<Integer> moudelValue;
 }

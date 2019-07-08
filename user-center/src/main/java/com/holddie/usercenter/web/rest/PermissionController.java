@@ -36,4 +36,9 @@ public class PermissionController {
         return ResultUtil.genOkResultPage(permissionService.fetchPermissions(pageable));
     }
 
+    @DeleteMapping("permission/{id}")
+    public void delete(@PathVariable(value = "id") Long id){
+        permissionService.deleteById(id);
+    }
+
 }

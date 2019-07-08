@@ -1,0 +1,40 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="holddie (generated)" id="1561642867875-3">
+        <addColumn tableName="center_permission">
+            <column name="menu_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1561642867875-4">
+        <addColumn tableName="center_permission">
+            <column name="moudel_value" type="tinyblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1561642867875-5">
+        <addColumn tableName="center_permission">
+            <column name="status" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1561642867875-6">
+        <addColumn tableName="center_permission">
+            <column name="title" type="varchar(50)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1561642867875-7">
+        <addForeignKeyConstraint baseColumnNames="menu_id" baseTableName="center_permission" constraintName="FK871cbrqmrssddkf34s2oi430v" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="center_menu" validate="true"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1561642867875-8">
+        <dropColumn columnName="menu_relation" tableName="center_permission"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1561642867875-9">
+        <dropColumn columnName="name" tableName="center_permission"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1561642867875-1">
+        <dropUniqueConstraint constraintName="UC_CENTER_USEREMAIL_COL" tableName="center_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_CENTER_USEREMAIL_COL" tableName="center_user"/>
+    </changeSet>
+    <changeSet author="holddie (generated)" id="1561642867875-2">
+        <dropUniqueConstraint constraintName="UC_CENTER_USERUSER_NAME_COL" tableName="center_user"/>
+        <addUniqueConstraint columnNames="user_name" constraintName="UC_CENTER_USERUSER_NAME_COL" tableName="center_user"/>
+    </changeSet>
+</databaseChangeLog>

@@ -8,7 +8,9 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * 功能表
@@ -57,7 +59,7 @@ public class Permission extends BaseEntity implements Serializable {
     @Column(nullable = false)
     private Boolean status;
 
-    private ArrayList<String> moudelValue;
+    private ArrayList<Integer> moudelValue;
 
     public static Permission of(ReqPermission reqPermission, Menu menu) {
         Permission permission = new Permission();
@@ -68,6 +70,20 @@ public class Permission extends BaseEntity implements Serializable {
         permission.setMoudelValue(reqPermission.getMoudelValue());
         permission.setMenu(menu);
         return permission;
+    }
+
+    @PrePersist
+    private void create() {
+        if (Objects.isNull(status)) {
+            this.status = false;
+        }
+    }
+
+    @PreUpdate
+    private void update() {
+        if (Objects.isNull(status)) {
+            this.status = false;
+        }
     }
 
     public void update(ReqPermission reqPermission, Menu menu) {

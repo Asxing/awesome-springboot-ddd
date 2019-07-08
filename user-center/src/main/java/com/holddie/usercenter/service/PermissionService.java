@@ -73,4 +73,8 @@ public class PermissionService {
         assert ponPermissions != null;
         return new PageImpl<>(ponPermissions, pageable, permissionPage.getTotalElements());
     }
+
+    public void deleteById(Long id) {
+        permissionRepository.deleteById(id);
+    }
 }
