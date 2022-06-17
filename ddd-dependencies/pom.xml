@@ -98,7 +98,7 @@
         <problem-spring-web.version>${problem-spring.version}</problem-spring-web.version>
         <problem-spring-webflux.version>${problem-spring.version}</problem-spring-webflux.version>
         <org-json-version>20080701</org-json-version>
-        <fastjson-version>1.2.45</fastjson-version>
+        <fastjson-version>1.2.83</fastjson-version>
         <redisson-version>3.7.0</redisson-version>
         <spring-boot-druid-version>1.1.10</spring-boot-druid-version>
         <p6spy-version>3.8.2</p6spy-version>
