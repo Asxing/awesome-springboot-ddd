@@ -88,7 +88,7 @@
         <swagger-version>2.9.2</swagger-version>
         <swagger.codegen-version>2.2.3</swagger.codegen-version>
         <swagger.annotations-version>1.5.13</swagger.annotations-version>
-        <mysql.connector-version>8.0.13</mysql.connector-version>
+        <mysql.connector-version>8.0.28</mysql.connector-version>
         <flyway-version>5.0.7</flyway-version>
         <jodd-version>4.3.0</jodd-version>
         <validator-version>1.6</validator-version>
